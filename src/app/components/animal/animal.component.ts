@@ -1,5 +1,7 @@
+import { FormBuilder } from '@angular/forms';
 import { Component } from '@angular/core';
 import { AnimalService } from 'src/app/services/animal.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-animal',
@@ -21,5 +23,7 @@ export class AnimalComponent {
   ngOnInit() {
     this.getAllAnimals();
   }
+
+
 
 }

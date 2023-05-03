@@ -1,0 +1,17 @@
+<h2>Section title</h2>
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Edad</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of animalList">
+        <td>{{item.nombre}}</td>
+        <td>{{item.edad}}</td>
+        <td>{{item.tipo}}</td>
+      </tr>
+  </table>
+</div>

@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -13,9 +12,15 @@ export class AnimalService {
 
   constructor(private http: HttpClient) { }
 
-
   getAllAnimalsData(): Observable<any> {
-    return this.http.get<any>(this.apiUri)
+    let token = localStorage.getItem('accessToken');
+    const headers1 = new HttpHeaders().set(
+    'accessToken', JSON.stringify(token));
+
+    return this.http.get<any>(
+      this.apiUri,{
+        headers: headers1,
+      })
   }
 
   newAnimal(data: any): Observable<any> {
@@ -45,4 +50,4 @@ export class AnimalService {
       { headers: this.httpOptions });
   }
 
-}//cierra class
+}

@@ -1,6 +1,6 @@
 import { FormBuilder } from '@angular/forms';
+import { AnimalService } from './../../services/animal.service';
 import { Component } from '@angular/core';
-import { AnimalService } from 'src/app/services/animal.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs';
@@ -12,6 +12,7 @@ import { formatDate } from '@angular/common';
   styleUrls: ['./animal.component.css']
 })
 export class AnimalComponent {
+  titlePage: string = 'Animalitos';
   animalList: any = [];
   animalForm: any = this.formBuilder.group({
     nombre: '',
@@ -22,20 +23,26 @@ export class AnimalComponent {
   editableAnimal: boolean = false;
   idAnimal: any;
 
+
   constructor(private animalService: AnimalService,
     private formBuilder: FormBuilder,
     private router: Router,
     private toastr: ToastrService) {
 
-  }
 
-  getAllAnimals() {
-    this.animalService.getAllAnimalsData().subscribe((data: {}) => {
-      this.animalList = data;
-    });
   }
   ngOnInit() {
     this.getAllAnimals();
+  }
+
+
+  getAllAnimals() {
+    console.log('get all animals ', localStorage.getItem('accessToken'))
+    this.animalService.getAllAnimalsData().subscribe(
+      (data: {}) => {
+        this.animalList = data
+      }
+    );
   }
 
   newAnimalEntry() {
@@ -131,5 +138,4 @@ export class AnimalComponent {
       }
     );
   }
-
 }

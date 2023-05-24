@@ -37,8 +37,7 @@ export class AnimalComponent {
 
 
   getAllAnimals() {
-    console.log('get all animals ', localStorage.getItem('accessToken'))
-    this.animalService.getAllAnimalsData().subscribe(
+    this.animalService.getAllAnimalsData(localStorage.getItem('accessToken')).subscribe(
       (data: {}) => {
         this.animalList = data
       }
@@ -46,7 +45,7 @@ export class AnimalComponent {
   }
 
   newAnimalEntry() {
-    this.animalService.newAnimal(this.animalForm.value).subscribe(
+    this.animalService.newAnimal(localStorage.getItem('accessToken'), this.animalForm.value).subscribe(
       () => {
         //Redirigiendo a la ruta actual /animal y recargando la ventana
         this.router.navigate(['/animal']).then(() => {
@@ -71,7 +70,7 @@ export class AnimalComponent {
         this.animalForm.removeControl(key);
       }
     }
-    this.animalService.updateAnimal(this.idAnimal, this.animalForm.value).subscribe(
+    this.animalService.updateAnimal(localStorage.getItem('accessToken'), this.idAnimal, this.animalForm.value).subscribe(
       () => {
         //Enviando mensaje de confirmación
         this.newMessage("Animal editado");
@@ -82,7 +81,7 @@ export class AnimalComponent {
   toggleEditAnimal(id: any) {
     this.idAnimal = id;
     console.log(this.idAnimal)
-    this.animalService.getOneAnimal(id).subscribe(
+    this.animalService.getOneAnimal(localStorage.getItem('accessToken'), id).subscribe(
       data => {
         this.animalForm.setValue({
           nombre: data.nombre,
@@ -131,7 +130,7 @@ export class AnimalComponent {
 
   deleteAnimalEntry(id: any) {
     console.log(id)
-    this.animalService.deleteAnimal(id).subscribe(
+    this.animalService.deleteAnimal(localStorage.getItem('accessToken'), id).subscribe(
       () => {
         //Enviando mensaje de confirmación
         this.newMessage("Animal eliminado");

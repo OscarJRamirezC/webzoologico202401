@@ -8,46 +8,59 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AnimalService {
   apiUri = '/api/animals';
-  httpOptions = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private http: HttpClient) { }
 
-  getAllAnimalsData(): Observable<any> {
-    let token = localStorage.getItem('accessToken');
-    const headers1 = new HttpHeaders().set(
-    'accessToken', JSON.stringify(token));
+  getAllAnimalsData(token: any): Observable<any> {
 
-    return this.http.get<any>(
-      this.apiUri,{
-        headers: headers1,
-      })
+    return this.http.get(this.apiUri, {
+      headers:
+      {
+        'Content-Type': 'application/json',
+        accessToken: `${token}`
+      }
+    });
   }
 
-  newAnimal(data: any): Observable<any> {
+  newAnimal(token: any, data: any): Observable<any> {
     return this.http.post<any>(
       this.apiUri,
       data,
-      { headers: this.httpOptions });
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          accessToken: `${token}`
+        }
+      });
   }
 
-  updateAnimal(id: any, data: any): Observable<any> {
+  updateAnimal(token: any, id: any, data: any): Observable<any> {
     console.log(data)
     return this.http.put<any>(
       this.apiUri + '/' + id,
       data,
-      { headers: this.httpOptions });
+      { headers: {
+        'Content-Type': 'application/json',
+        accessToken: `${token}`
+      } });
   }
 
-  getOneAnimal(id: any): Observable<any> {
+  getOneAnimal(token: any, id: any): Observable<any> {
     return this.http.get<any>(
       this.apiUri + '/' + id,
-      { headers: this.httpOptions });
+      { headers: {
+        'Content-Type': 'application/json',
+        accessToken: `${token}`
+      } });
   }
 
-  deleteAnimal(id: any) {
+  deleteAnimal(token: any, id: any) {
     return this.http.delete<any>(
       this.apiUri + "/" + id,
-      { headers: this.httpOptions });
+      { headers: {
+        'Content-Type': 'application/json',
+        accessToken: `${token}`
+      } });
   }
 
 }

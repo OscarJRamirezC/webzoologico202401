@@ -11,13 +11,15 @@ import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './authentication/login/login.component';
 import { SignupComponent } from './authentication/signup/signup.component';
 import { AuthenticationService } from './services/authentication.service';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AnimalComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,

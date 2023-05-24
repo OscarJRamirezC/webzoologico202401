@@ -22,6 +22,7 @@ export class AnimalComponent {
   })
   editableAnimal: boolean = false;
   idAnimal: any;
+  user = 'Usuario';
 
 
   constructor(private animalService: AnimalService,

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,11 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'webzoologico';
   titlePage = '';
+
+  constructor(@Inject(DOCUMENT) private document: Document){
+
+  }
+  ngOnInit(): void {
+    //this.document.body.classList.add('bg-gradient-primary');
+  }
 }

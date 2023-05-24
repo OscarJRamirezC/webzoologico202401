@@ -6,6 +6,7 @@ import { LoginComponent } from './authentication/login/login.component';
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
+  {path: '',component: SignupComponent},
   {path: 'animal',component: AnimalComponent},
   {path: 'signup',component: SignupComponent},
   {path: 'login',component: LoginComponent},

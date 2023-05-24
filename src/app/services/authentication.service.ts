@@ -16,14 +16,7 @@ export class AuthenticationService {
   constructor(private httpClient: HttpClient) { }
 
   register(user: User): Observable<Jwtres> {
-    return this.httpClient.post<Jwtres>(this.apiUri + '/signup', user).pipe(
-      tap((res: Jwtres) => {
-        if (res) {
-          this.saveToken(res.datosUsuario.accessToken, res.datosUsuario.expiresIn);
-        }
-      })
-
-    )
+    return this.httpClient.post<Jwtres>(this.apiUri + '/signup', user);
   }
 
   login(user: User): Observable<Jwtres> {
@@ -32,9 +25,9 @@ export class AuthenticationService {
         if (res) {
           {
             //console.log(JSON.parse(JSON.stringify(res)).accessToken)
-            ACCESS_TOKEN: JSON.parse(JSON.stringify(res)).accessToken
+            //ACCESS_TOKEN: JSON.parse(JSON.stringify(res)).accessToken
           }
-        }else{
+        } else {
           console.log('hubo un error')
         }
       })

@@ -3,5 +3,15 @@
     "target": "http://localhost:3000",
     "secure": false,
     "changeOrigin": false
+  },
+  "/api/login": {
+    "target": "http://localhost:3000",
+    "secure": false,
+    "changeOrigin": false
+  },
+  "/api/signup": {
+    "target": "http://localhost:3000",
+    "secure": false,
+    "changeOrigin": false
   }
 }
